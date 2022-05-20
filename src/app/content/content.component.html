@@ -1,0 +1,40 @@
+<div [formGroup]="form">
+  <div class="wrapper">
+    <div *ngIf="firstControl.hasError('minlength')" class="error">
+      Minimum length should be 5.
+    </div>
+    <div *ngIf="firstControl.hasError('maxlength')" class="error">
+      Maximum length should be 10.
+    </div>
+    <div class="text-input">
+      <input type="text" id="input1" [formControl]="firstControl" />
+      <label for="input1" style="cursor: pointer"
+        ><div style="padding: 14px; font-weight: 800">SUBMIT</div></label
+      >
+    </div>
+  </div>
+  <p></p>
+  <div class="wrapper">
+    <div class="text-input">
+      <input type="text" id="input2" [formControl]="secondControl" />
+    </div>
+  </div>
+  <button class="search-btn" (click)="submit()">SEARCH</button>
+</div>
+
+<div *ngIf="loading.isLoading$ | async">...Loading list</div>
+
+<table *ngIf="wordCount.length > 0">
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let w of wordCount">
+      <td>{{ w.word }}</td>
+      <td>{{ w.count }}</td>
+    </tr>
+  </tbody>
+</table>
